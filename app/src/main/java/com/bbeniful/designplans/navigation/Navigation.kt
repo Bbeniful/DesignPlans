@@ -5,8 +5,10 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.bbeniful.designplans.buttons.presentation.Buttons
 import com.bbeniful.designplans.colorChange.presentation.ColorChangeUI
 import com.bbeniful.designplans.designList.presentation.DesignListUI
+import com.bbeniful.designplans.designList.utilities.Designs
 import kotlinx.serialization.Serializable
 
 @Composable
@@ -23,6 +25,10 @@ fun Navigation(paddingValues: PaddingValues) {
                 padding = paddingValues
             )
         }
+
+        composable<Buttons> {
+            Buttons()
+        }
     }
 }
 
@@ -32,3 +38,6 @@ object Home
 
 @Serializable
 object ColorChange
+
+@Serializable
+object Buttons
