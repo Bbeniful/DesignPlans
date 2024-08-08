@@ -39,7 +39,7 @@ fun Buttons() {
             Text(text = "Hello")
         }
 
-        SeemsTransparentButton(lightBlueNew, secondColor = Color.LightGray) {
+        SeemsTransparentButton(mainColor = lightBlueNew, secondColor = Color.LightGray) {
             Text(text = "Hello")
         }
 
