@@ -12,6 +12,7 @@ import com.bbeniful.designplans.buttons.presentation.Buttons
 import com.bbeniful.designplans.cloudSunAnimation.CloudSunAnimationUI
 import com.bbeniful.designplans.colorChange.presentation.ColorChangeUI
 import com.bbeniful.designplans.designList.presentation.DesignListUI
+import com.bbeniful.designplans.gameUI.presentation.GameUI
 import com.bbeniful.designplans.sharedElementTransition.presentation.SharedElementList
 import com.bbeniful.designplans.sharedElementTransition.presentation.imageURL
 import kotlinx.serialization.Serializable
@@ -54,6 +55,9 @@ fun Navigation(paddingValues: PaddingValues) {
             composable<CloudSunAnimation> {
                 CloudSunAnimationUI()
             }
+            composable<GamingUINav> {
+                GameUI()
+            }
 
         }
     }
@@ -78,6 +82,9 @@ object AnimateLayoutChange
 
 @Serializable
 object CloudSunAnimation
+
+@Serializable
+object GamingUINav
 
 @Serializable
 data class SharedDetails(

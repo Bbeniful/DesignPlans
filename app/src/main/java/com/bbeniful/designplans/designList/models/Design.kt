@@ -5,5 +5,6 @@ enum class Design(name: String) {
     Buttons("Buttons"),
     SharedElementDesign("SharedElementDesign"),
     AnimateLayoutChange("AnimateLayoutChange"),
-    CloudSunAnimation("ClowSunAnimation")
+    CloudSunAnimation("ClowSunAnimation"),
+    GamingUI("GamingUI")
 }

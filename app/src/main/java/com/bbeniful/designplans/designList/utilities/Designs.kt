@@ -5,6 +5,7 @@ import com.bbeniful.designplans.navigation.AnimateLayoutChange
 import com.bbeniful.designplans.navigation.Buttons
 import com.bbeniful.designplans.navigation.CloudSunAnimation
 import com.bbeniful.designplans.navigation.ColorChange
+import com.bbeniful.designplans.navigation.GamingUINav
 import com.bbeniful.designplans.navigation.SharedList
 
 sealed class Designs(val design: Design, val path: Any) {
@@ -32,6 +33,11 @@ sealed class Designs(val design: Design, val path: Any) {
         design = Design.CloudSunAnimation,
         path = CloudSunAnimation
     )
+
+    class GamingUI : Designs(
+        design = Design.GamingUI,
+        path = GamingUINav
+    )
 }
 
 val designs: List<Designs>
@@ -40,5 +46,6 @@ val designs: List<Designs>
         Designs.Buttons(),
         Designs.SharedElement(),
         Designs.AnimateLayoutChange(),
-        Designs.CloudSunAnimation()
+        Designs.CloudSunAnimation(),
+        Designs.GamingUI()
     )
