@@ -5,6 +5,10 @@ enum class Design(name: String) {
     Buttons("Buttons"),
     SharedElementDesign("SharedElementDesign"),
     AnimateLayoutChange("AnimateLayoutChange"),
-    CloudSunAnimation("ClowSunAnimation"),
+    CloudSunAnimation("CloudSunAnimation"),
+    Calendar("Calendar"),
+    ClickText("ClickText"),
+    AnimatedColorBG("AnimatedColorBG"),
+    MekisUINav("MekisUI"),
     GamingUI("GamingUI")
 }

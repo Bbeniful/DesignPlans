@@ -31,3 +31,9 @@ val darkGrayGame = Color(0XFF121212)
 val darkGrayTwo = Color(0XFF252525)
 val darkGrayIcon = Color(0XFF272727)
 val btnGreen = Color(0XFF118572)
+
+val lightSky = Color(0xFF62cff4)
+val darkSky = Color(0xFF2c67f2)
+//dirty white
+val dirtyWhite = Color(0xFFf5f5f5)
+val orangeColor = Color(0xFFF7D9C4)

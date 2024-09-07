@@ -10,7 +10,6 @@ plugins {
     alias(libs.plugins.kotlin.compose.compiler)
 
 
-
 }
 
 android {
@@ -46,8 +45,8 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    with(extensions.getByType<KotlinAndroidProjectExtension>()){
-        compilerOptions{
+    with(extensions.getByType<KotlinAndroidProjectExtension>()) {
+        compilerOptions {
             jvmTarget = JvmTarget.JVM_17
         }
     }
@@ -57,7 +56,7 @@ android {
     }
 
 
-    with(extensions.getByType<ComposeCompilerGradlePluginExtension>()){
+    with(extensions.getByType<ComposeCompilerGradlePluginExtension>()) {
         enableStrongSkippingMode = true
         includeSourceInformation = true
     }
@@ -91,6 +90,5 @@ dependencies {
     implementation(libs.coil.compose)
 
     implementation(libs.androidx.compose.animation)
-
-
+    //implementation(libs.androidx.ui.text)
 }
