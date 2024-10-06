@@ -10,6 +10,7 @@ import com.bbeniful.designplans.navigation.CloudSunAnimation
 import com.bbeniful.designplans.navigation.ColorChange
 import com.bbeniful.designplans.navigation.MekisUINav
 import com.bbeniful.designplans.navigation.GamingUINav
+import com.bbeniful.designplans.navigation.NavigationDrawer
 import com.bbeniful.designplans.navigation.SharedList
 
 sealed class Designs(val design: Design, val path: Any) {
@@ -61,6 +62,11 @@ sealed class Designs(val design: Design, val path: Any) {
         design = Design.MekisUINav,
         path = MekisUINav
     )
+
+    class NavigationDrawer: Designs(
+        design = Design.NavigationDrawer,
+        path = NavigationDrawer
+    )
 }
 
 val designs: List<Designs>
@@ -74,5 +80,7 @@ val designs: List<Designs>
         Designs.Calendar(),
         Designs.ClickText(),
         Designs.AnimatedColorBG(),
-        Designs.MekisUI()
+        Designs.MekisUI(),
+        Designs.NavigationDrawer()
+
     )

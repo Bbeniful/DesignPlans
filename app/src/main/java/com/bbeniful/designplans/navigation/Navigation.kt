@@ -11,6 +11,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import com.bbeniful.designplans.animatedColorBg.presentation.AnimatedColorBackgroundUI
 import com.bbeniful.designplans.animteLayoutChange.presentation.RowColumnToggle
 import com.bbeniful.designplans.buttons.presentation.Buttons
@@ -22,6 +23,9 @@ import com.bbeniful.designplans.designList.presentation.DesignListUI
 import com.bbeniful.designplans.gameUI.presentation.GameUI
 import com.bbeniful.designplans.mekisUI.presentation.MekisUI
 import com.bbeniful.designplans.mekisUI.presentation.MekisUIWithAnim
+import com.bbeniful.designplans.navigationDrawer.NavigationDrawer
+import com.bbeniful.designplans.navigationDrawer.News
+import com.bbeniful.designplans.navigationDrawer.SingleNews
 import com.bbeniful.designplans.sharedElementTransition.presentation.SharedElementList
 import com.bbeniful.designplans.sharedElementTransition.presentation.imageURL
 import kotlinx.serialization.Serializable
@@ -52,7 +56,6 @@ fun Navigation(paddingValues: PaddingValues) {
                     navController.navigate(SharedDetails(url, text))
                 }
             }
-
             composable<SharedDetails> {
                 val url = it.arguments?.getString("imageURL") as imageURL
                 val text = it.arguments?.getString("data") ?: ""
@@ -89,12 +92,27 @@ fun Navigation(paddingValues: PaddingValues) {
             }
 
             composable<MekisUINav> {
-                MekisUI{
+                MekisUI {
                     navController.navigate(MekisUIWithAnimNav)
                 }
             }
             composable<MekisUIWithAnimNav> {
                 MekisUIWithAnim()
+            }
+            composable<NavigationDrawer> {
+                NavigationDrawer(
+                    paddingValues = paddingValues
+                ) { news ->
+                    navController.navigate(SingleNewsRoute(news.title))
+                }
+            }
+
+            composable<SingleNewsRoute> {
+                val news = it.toRoute<SingleNewsRoute>()
+                SingleNews(
+                    paddingValues = paddingValues,
+                    title = news.title
+                )
             }
         }
     }
@@ -137,6 +155,14 @@ object MekisUINav
 
 @Serializable
 object MekisUIWithAnimNav
+
+@Serializable
+object NavigationDrawer
+
+@Serializable
+data class SingleNewsRoute(
+    val title: String
+)
 
 @Serializable
 data class SharedDetails(

@@ -37,3 +37,6 @@ val darkSky = Color(0xFF2c67f2)
 //dirty white
 val dirtyWhite = Color(0xFFf5f5f5)
 val orangeColor = Color(0xFFF7D9C4)
+
+val drawerMenu = Color(0XFF2C3036)
+val drawerMenuBackground = Color(0xFF212B36)

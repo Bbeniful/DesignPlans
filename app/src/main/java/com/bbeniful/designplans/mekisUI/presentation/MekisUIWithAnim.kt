@@ -9,6 +9,7 @@ import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,6 +20,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.HorizontalDivider
@@ -34,10 +36,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.bbeniful.designplans.R
 import com.bbeniful.designplans.core.ui.theme.dirtyWhite
 import com.bbeniful.designplans.mekisUI.presentation.components.ButtonsWithIcon
 import com.bbeniful.designplans.mekisUI.presentation.components.YellowBox
@@ -54,18 +59,32 @@ fun MekisUIWithAnimContent() {
         mutableStateOf(false)
     }
 
+    //var boxHeight =
+
+
+
+    val positionVertical by animateAlignmentAsState(if (!isExpanded) Alignment.Center else Alignment.TopStart)
+
+    var heightOfBox by remember {
+        mutableStateOf(0.dp)
+    }
+
     val yellowBoxHeight by
     animateDpAsState(
-        targetValue = if (isExpanded) 800.dp else 300.dp,
+        targetValue = if (isExpanded) heightOfBox + 300.dp else 300.dp,
         animationSpec = tween(1000),
         label = ""
     )
-
+    
 
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(dirtyWhite)
+            .onGloballyPositioned {
+                heightOfBox = it.size.height.dp
+            },
+        contentAlignment = Alignment.BottomCenter
     ) {
         ElevatedCard(
             modifier = Modifier
@@ -75,83 +94,19 @@ fun MekisUIWithAnimContent() {
                 containerColor = Color.White,
             ),
         ) {
-            Column(
-                modifier = Modifier.fillMaxSize()
+            YellowBox(
+                height = yellowBoxHeight
             ) {
-                AnimatedVisibility(
-                    visible = isExpanded,
-                    enter = slideInVertically(
-                        tween(1000),
-                        initialOffsetY = { -it * 2 }
-                    ),
-                    exit = slideOutVertically(
-                        animationSpec = tween(1000),
-                        targetOffsetY = {
-                            -it * 2
-                        }
-                    )
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = positionVertical
                 ) {
-                    HeaderItem()
-                }
-
-                Spacer(modifier = Modifier.weight(1f))
-                YellowBox(
-                    height = yellowBoxHeight
-                ) {
-                    Column(
-                        Modifier
-                            .fillMaxSize(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                        /*AnimatedVisibility(
-                            isExpanded,
-                            enter = scaleIn(tween(1000)),
-                            exit = scaleOut(
-                                tween(1000)
-                            )
-                        ) {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(horizontal = 12.dp),
-                                horizontalArrangement = Arrangement.SpaceBetween
-                            ) {
-                                Text("Hhaa", fontSize = 35.sp)
-                                Text("HUhuhuhu", fontSize = 35.sp, fontWeight = FontWeight.Bold)
-                            }
-
-                        }*/
-                       Spacer(modifier = Modifier.weight(1f))
-                        AnimatedVisibility(
-                            !isExpanded,
-                            enter = scaleIn(tween(1000)),
-                            exit = scaleOut(
-                                tween(1000)
-                            )
-                        ) {
-
-                            Text(text = "achvsjedvfcds", fontSize = 35.sp)
-                        }
-
-                        Spacer(modifier = Modifier.weight(1f))
-                        AnimatedVisibility(
-                            isExpanded,
-                            enter = scaleIn(tween(1000)),
-                            exit = scaleOut(
-                                tween(1000)
-                            )
-                        ) {
-                            QRcode()
-                        }
-                        val btnText = if (isExpanded) "Collapse" else "Expand"
-
-                        Spacer(modifier = Modifier.weight(1f))
-
-                        ButtonsWithIcon(
-                            text = btnText, onClick = {
-                                isExpanded = !isExpanded
-                            })
+                    this@ElevatedCard.AnimatedVisibility(visible = isExpanded) {
+                        Image(
+                            modifier = Modifier.size(150.dp),
+                            painter = painterResource(R.drawable.example_qr),
+                            contentDescription = ""
+                        )
                     }
                 }
             }

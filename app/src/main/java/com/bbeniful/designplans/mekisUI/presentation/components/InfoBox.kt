@@ -54,8 +54,6 @@ fun InfoBox(onDismiss: () -> Unit, position: Offset) {
                         tipHeight = 12.dp
                     )
                 )
-
-
         ) {
             Column(
                 modifier = Modifier.padding(all = 12.dp)

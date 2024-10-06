@@ -10,5 +10,6 @@ enum class Design(name: String) {
     ClickText("ClickText"),
     AnimatedColorBG("AnimatedColorBG"),
     MekisUINav("MekisUI"),
-    GamingUI("GamingUI")
+    GamingUI("GamingUI"),
+    NavigationDrawer("NavigationDrawer")
 }
